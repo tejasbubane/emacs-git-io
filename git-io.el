@@ -73,7 +73,5 @@
     (insert short-url)
     (message short-url)))
 
-(global-set-key (kbd "C-x \\") 'git-io-shorten)
-
 (provide 'git-io)
 ;;; git-io.el ends here
