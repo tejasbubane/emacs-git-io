@@ -1,10 +1,12 @@
-;;; git-io.el --- git.io integration for emacs                     -*- lexical-binding: t; -*-
+;;; git-io.el --- git.io integration                     -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2018  Tejas Bubane
 
 ;; Author: Tejas Bubane <tejasbubane@gmail.com>
-;; Keywords: url-shortener git-io
+;; URL: https://github.com/tejasbubane/emacs-git-io
+;; Keywords: convenience files
 ;; Version: 0.1.1
+;; Package-Requires: ((emacs "24.4"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -30,34 +32,34 @@
 
 (require 'subr-x)
 
-(defun delete-before ()
+(defun git-io-delete-before ()
   "Search for location header and delete everything before the match."
   (let ((location-header "Location: "))
     (goto-char (point-min))
     (re-search-forward location-header)
     (delete-region (point) (point-min))))
 
-(defun delete-after ()
+(defun git-io-delete-after ()
   "Delete buffer contents after the matched location header."
   (goto-char (line-end-position))
   (delete-region (point) (point-max)))
 
-(defun extract-shortened-url ()
+(defun git-io-extract-shortened-url ()
   "Delete everything except shortened URL found in location header."
-  (delete-before)
-  (delete-after)
+  (git-io-delete-before)
+  (git-io-delete-after)
   (string-trim (buffer-string)))
 
-(defun shorten (url)
+(defun git-io-shorten-url (input-url)
   "Make a form-post request to git.io with the given URL."
   (let ((gitio-url "https://git.io")
         (url-request-method "POST")
         (url-request-extra-headers
          '(("Content-Type" . "multipart/form-data")))
-        (url-request-data (concat "url=" url)))
+        (url-request-data (concat "url=" input-url)))
     (with-current-buffer
         (url-retrieve-synchronously gitio-url)
-      (extract-shortened-url))))
+      (git-io-extract-shortened-url))))
 
 (defun git-io-shorten ()
   "Replace thing at point with shortened URL."
@@ -66,7 +68,7 @@
          (start (car bounds))
          (end (cdr bounds))
          (original-url (string-trim (buffer-substring-no-properties start end)))
-         (short-url (shorten original-url)))
+         (short-url (git-io-shorten-url original-url)))
     (delete-region start end)
     (insert short-url)
     (message short-url)))
