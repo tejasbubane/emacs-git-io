@@ -1,10 +1,10 @@
-;;; test.el --- a simple package                     -*- lexical-binding: t; -*-
+;;; git-io.el --- git.io integration for emacs                     -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2018  Tejas Bubane
 
 ;; Author: Tejas Bubane <tejasbubane@gmail.com>
 ;; Keywords: url-shortener git-io
-;; Version: 0.1.0
+;; Version: 0.1.1
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,7 +21,10 @@
 
 ;;; Commentary:
 
-;; Interactive command to replace URL at point with a shortened one using git.io
+;; Provides interactive command `git-io-shorten` to replace URL at point
+;; with a shortened one using git.io
+;; Gets the URL at current cursor position, makes a request to https://git.io/
+;; to get the shortened URL and replaces the original url with the shortened one.
 
 ;;; Code:
 
@@ -71,5 +74,5 @@
 
 (global-set-key (kbd "C-x \\") 'git-io-shorten)
 
-(provide 'git-io-shorten)
-;;; git-io-shorten.el ends here
+(provide 'git-io)
+;;; git-io.el ends here
