@@ -31,26 +31,25 @@
 (require 'subr-x)
 
 (defun delete-before ()
-  "Search for location header and delete everything before the match"
+  "Search for location header and delete everything before the match."
   (let ((location-header "Location: "))
     (goto-char (point-min))
     (re-search-forward location-header)
     (delete-region (point) (point-min))))
 
 (defun delete-after ()
-  "Delete buffer contents after the matched location header"
+  "Delete buffer contents after the matched location header."
   (goto-char (line-end-position))
   (delete-region (point) (point-max)))
 
 (defun extract-shortened-url ()
-  "url-retrieve returns a buffer - shortened URL is in Location"
-  "delete everything else in the buffer"
+  "Delete everything except shortened URL found in location header."
   (delete-before)
   (delete-after)
   (string-trim (buffer-string)))
 
 (defun shorten (url)
-  "Make a form-post request to git.io with the given url"
+  "Make a form-post request to git.io with the given URL."
   (let ((gitio-url "https://git.io")
         (url-request-method "POST")
         (url-request-extra-headers
@@ -61,7 +60,7 @@
       (extract-shortened-url))))
 
 (defun git-io-shorten ()
-  "Replace thing at point with shortened URL"
+  "Replace thing at point with shortened URL."
   (interactive)
   (let* ((bounds (bounds-of-thing-at-point 'url))
          (start (car bounds))
