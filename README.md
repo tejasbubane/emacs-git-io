@@ -1,5 +1,8 @@
 # emacs-git-io
 
+[![MELPA](https://melpa.org/packages/git-io-badge.svg)](https://melpa.org/#/git-io)
+
+
 Interactive command to replace github URL at point with a shortened one using [git.io](https://git.io/).
 
 Gets the URL at current cursor position, makes a request to [git.io](https://git.io/)
