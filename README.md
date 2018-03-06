@@ -10,9 +10,17 @@ to get the shortened URL and replaces the original url with the shortened one.
 
 **Note:** This package uses [git.io](https://git.io/) which works only for github URLs.
 
+## Installation:
+
+
+* **MELPA**: Package is available for install in MELPA - `git-io`
+
+* **Manual**: Place the `git-io.el` file in your loadpath
+  and require it: `(require 'git-io)`.
+
 ## Usage:
 
-Put the `git-io.el` file in you loadpath and `(require 'git-io)`.
+Once the package is loaded, an interactive command `git-io-shorten` is available.
 Point on the github url and invoke `git-io-shorten` command: `M-x git-io-shorten`.
 
 Optionally, bind a key for quick usage:
