@@ -61,6 +61,7 @@
         (url-retrieve-synchronously gitio-url)
       (git-io-extract-shortened-url))))
 
+;;;###autoload
 (defun git-io-shorten ()
   "Replace thing at point with shortened URL."
   (interactive)
