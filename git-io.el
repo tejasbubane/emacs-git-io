@@ -1,4 +1,4 @@
-;;; git-io.el --- git.io integration                     -*- lexical-binding: t; -*-
+;;; git-io.el --- Integration for git.io URL shortening in buffer  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2018  Tejas Bubane
 
