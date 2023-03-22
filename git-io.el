@@ -51,7 +51,7 @@
   (string-trim (buffer-string)))
 
 (defun git-io-shorten-url (input-url)
-  "Make a form-post request to git.io with the given URL."
+  "Argument INPUT-URL URL to shorten."
   (let ((gitio-url "https://git.io")
         (url-request-method "POST")
         (url-request-extra-headers
